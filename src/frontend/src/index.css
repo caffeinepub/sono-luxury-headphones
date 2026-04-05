@@ -1,0 +1,449 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+    --background: 0 0 0;
+    --foreground: 0.94 0 0;
+    --card: 0.09 0 0;
+    --card-foreground: 0.94 0 0;
+    --popover: 0.07 0 0;
+    --popover-foreground: 0.94 0 0;
+    --primary: 0.44 0.21 27.325;
+    --primary-foreground: 0.94 0 0;
+    --secondary: 0.12 0 0;
+    --secondary-foreground: 0.94 0 0;
+    --muted: 0.14 0 0;
+    --muted-foreground: 0.62 0 0;
+    --accent: 0.44 0.21 27.325;
+    --accent-foreground: 0.94 0 0;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.18 0 0;
+    --input: 0.15 0 0;
+    --ring: 0.44 0.21 27.325;
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+    --sidebar: 0.07 0 0;
+    --sidebar-foreground: 0.94 0 0;
+    --sidebar-primary: 0.44 0.21 27.325;
+    --sidebar-primary-foreground: 0.94 0 0;
+    --sidebar-accent: 0.12 0 0;
+    --sidebar-accent-foreground: 0.94 0 0;
+    --sidebar-border: 0.18 0 0;
+    --sidebar-ring: 0.44 0.21 27.325;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    cursor: none;
+  }
+  /* Hide default cursor everywhere */
+  *,
+  *::before,
+  *::after {
+    cursor: none !important;
+  }
+}
+
+/* ==========================================
+   CUSTOM CURSOR
+   ========================================== */
+.cursor-dot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s;
+  will-change: transform;
+}
+
+.cursor-dot.hovering {
+  width: 10px;
+  height: 10px;
+  background: #cc0000;
+}
+
+.cursor-halo {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  background: radial-gradient(
+    circle,
+    rgba(204, 0, 0, 0.18) 0%,
+    rgba(204, 0, 0, 0) 70%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, opacity 0.3s;
+  will-change: transform;
+  animation: cursorPulse 3s ease-in-out infinite;
+}
+
+.cursor-halo.hovering {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(
+    circle,
+    rgba(204, 0, 0, 0.3) 0%,
+    rgba(204, 0, 0, 0) 70%
+  );
+}
+
+/* ==========================================
+   ANIMATIONS
+   ========================================== */
+@keyframes cursorPulse {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    opacity: 0.6;
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 0.9;
+  }
+}
+
+@keyframes fadeInZoom {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes floatUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+@keyframes equalizerBar {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes loaderFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes loaderFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes heroGlow {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes scrollBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 0.5;
+  }
+}
+
+@keyframes waveform {
+  0% {
+    transform: scaleY(0.4);
+  }
+  25% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.6);
+  }
+  75% {
+    transform: scaleY(0.9);
+  }
+  100% {
+    transform: scaleY(0.4);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ==========================================
+   UTILITY CLASSES
+   ========================================== */
+.animate-fade-in-zoom {
+  animation: fadeInZoom 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-float-up {
+  animation: floatUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.animate-scroll-bounce {
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+.section-hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  filter: blur(8px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s
+    cubic-bezier(0.22, 1, 0.36, 1), filter 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity, filter;
+}
+
+.section-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0px);
+}
+
+/* ==========================================
+   CARD HOVER EFFECTS
+   ========================================== */
+.sono-card {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  will-change: transform;
+}
+
+.sono-card:hover {
+  border-color: rgba(204, 0, 0, 0.3);
+  box-shadow: 0 0 30px rgba(204, 0, 0, 0.12), 0 8px 40px rgba(0, 0, 0, 0.5);
+  transform: scale(1.02) translateY(-2px);
+}
+
+/* ==========================================
+   BUTTON STYLES
+   ========================================== */
+.sono-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(237, 237, 237, 0.9);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: none;
+}
+
+.sono-btn:hover {
+  border-color: rgba(204, 0, 0, 0.5);
+  box-shadow: 0 0 24px rgba(204, 0, 0, 0.35), 0 0 60px rgba(204, 0, 0, 0.1);
+  transform: scale(1.03);
+  background: rgba(204, 0, 0, 0.06);
+}
+
+.sono-btn-red {
+  background: rgba(180, 0, 0, 0.8);
+  border-color: rgba(204, 0, 0, 0.6);
+  color: rgba(237, 237, 237, 0.95);
+}
+
+.sono-btn-red:hover {
+  background: rgba(204, 0, 0, 0.9);
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.4), 0 0 80px rgba(204, 0, 0, 0.15);
+  transform: scale(1.03);
+}
+
+/* ==========================================
+   RED DIVIDER GLOW
+   ========================================== */
+.sono-divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #cc0000, transparent);
+  box-shadow: 0 0 8px rgba(204, 0, 0, 0.5);
+  margin: 0 auto;
+}
+
+/* ==========================================
+   3D CANVAS
+   ========================================== */
+.product-canvas-container {
+  position: relative;
+}
+
+.product-canvas-container canvas {
+  touch-action: none;
+}
+
+/* ==========================================
+   CHAT WIDGET
+   ========================================== */
+.chat-panel {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(10, 10, 10, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(204, 0, 0, 0.08);
+}
+
+.chat-input:focus {
+  outline: none;
+  border-color: rgba(204, 0, 0, 0.4);
+  box-shadow: 0 0 12px rgba(204, 0, 0, 0.15);
+}
+
+/* ==========================================
+   NAV
+   ========================================== */
+.nav-blur {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ==========================================
+   EQUALIZER BARS
+   ========================================== */
+.eq-bar {
+  transform-origin: bottom;
+  animation: equalizerBar linear infinite;
+}
+
+/* ==========================================
+   PARALLAX LAYER
+   ========================================== */
+.parallax-slow {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* ==========================================
+   SCROLLBAR
+   ========================================== */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(204, 0, 0, 0.3);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(204, 0, 0, 0.6);
+}
+
+/* ==========================================
+   SELECTION
+   ========================================== */
+::selection {
+  background: rgba(204, 0, 0, 0.3);
+  color: #ededed;
+}
+
+/* ==========================================
+   FEATURE TILE GLOW
+   ========================================== */
+.feature-tile {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  will-change: transform;
+}
+
+.feature-tile:hover {
+  border-color: rgba(204, 0, 0, 0.25);
+  box-shadow: 0 0 20px rgba(204, 0, 0, 0.08);
+  transform: translateY(-3px);
+}
